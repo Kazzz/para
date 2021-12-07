@@ -1,0 +1,40 @@
+service: para
+runtime: java11
+instance_class: F1
+automatic_scaling:
+    min_idle_instances: 0
+    max_idle_instances: 0  # default value
+    min_pending_latency: automatic  # default value
+    max_pending_latency: automatic
+    max_concurrent_requests: 40
+
+env_variables:
+    # --SCOOLD CONFIG VARS--
+#    para_env: production
+#    para_endpoint: https://paraio.com
+#    para_access_key: app:collabo-para
+#    para_secret_key: +ex3Xwqx1+kjtv41T8VWf049iXDBx8iWpi/LyiKgBDB2i6wlIDgMCw==
+#
+#    para_fb_app_id: <fb_appid>
+#    para_gp_app_id: <google_app_id>
+#    para_gp_secret: <google_secret>
+#
+#    para_app_secret_key: <random_secret>
+#    para_admins: <admin_identifier>
+#    para_password_auth_enabled: true
+#    para_is_default_space_public: true
+#    para_new_users_can_comment: true
+
+# pidファイルを収集させたい場合(コマンドライン等からプロセスをKillしたい場合はtrue)
+# -Dpidfile_enabled=false
+
+# application.conf を指定する場合の記法 (paraでは上手く動かない)
+# -Dconfig.file=classpath:application.conf
+
+# typeSage.configのロード状態を確認する場合に指定する
+# -Dconfig.trace=loads
+
+# LogBackの設定ファイルを指定する
+# -Dlogging.config=classpath:logback.xml
+
+entrypoint: java -jar -noverify -Dconfig.trace=loads -Dpidfile_enabled=false para-1.42.1-SNAPSHOT.jar
